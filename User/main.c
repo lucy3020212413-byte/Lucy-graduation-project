@@ -1,23 +1,3 @@
-/**
- ****************************************************************************************************
- * @file        main.c
- * @author      ÕıµãÔ­×ÓÍÅ¶Ó(ALIENTEK)
- * @version     V1.4
- * @date        2022-01-04
- * @brief       LVGL lv_switch(¿ª¹Ø) ÊµÑé
- * @license     Copyright (c) 2020-2032, ¹ãÖİÊĞĞÇÒíµç×Ó¿Æ¼¼ÓĞÏŞ¹«Ë¾
- ****************************************************************************************************
- * @attention
- *
- * ÊµÑéÆ½Ì¨:ÕıµãÔ­×Ó STM32F103¿ª·¢°å
- * ÔÚÏßÊÓÆµ:www.yuanzige.com
- * ¼¼ÊõÂÛÌ³:www.openedv.com
- * ¹«Ë¾ÍøÖ·:www.alientek.com
- * ¹ºÂòµØÖ·:openedv.taobao.com
- *
- ****************************************************************************************************
- */
-
 #include "./SYSTEM/sys/sys.h"
 #include "./SYSTEM/usart/usart.h"
 #include "./SYSTEM/delay/delay.h"
@@ -31,24 +11,23 @@
 #include "lora.h"
 //#include "esp8266.h"
 
-
 int main(void)
 {
-    HAL_Init();                         /* ³õÊ¼»¯HAL¿â */
-    sys_stm32_clock_init(RCC_PLL_MUL9); /* ÉèÖÃÊ±ÖÓ, 72Mhz */
-    delay_init(72);                     /* ÑÓÊ±³õÊ¼»¯ */
-    Serial_Init();					// LoRa     ¡ú ²¨ÌØÂÊ 9600
-    led_init();                         /* ³õÊ¼»¯LED */
-    lcd_init();                        /* ³õÊ¼»¯LCD */
-    key_init();                         /* ³õÊ¼»¯°´¼ü */
-    tp_dev.init();                      /* ´¥ÃşÆÁ³õÊ¼»¯ */
-    my_mem_init(SRAMIN);                /* ³õÊ¼»¯ÄÚ²¿SRAMÄÚ´æ³Ø */
+    HAL_Init();                         /* åˆå§‹åŒ–HALåº“ */
+    sys_stm32_clock_init(RCC_PLL_MUL9); /* è®¾ç½®æ—¶é’Ÿ, 72Mhz */
+    delay_init(72);                     /* å»¶æ—¶åˆå§‹åŒ– */
+    Serial_Init();					// LoRa     â†’ æ³¢ç‰¹ç‡ 9600
+    led_init();                         /* åˆå§‹åŒ–LED */
+    lcd_init();                        /* åˆå§‹åŒ–LCD */
+    key_init();                         /* åˆå§‹åŒ–æŒ‰é”® */
+    tp_dev.init();                      /* è§¦æ‘¸å±åˆå§‹åŒ– */
+    my_mem_init(SRAMIN);                /* åˆå§‹åŒ–å†…éƒ¨SRAMå†…å­˜æ±  */
  delay_ms(3000);
-Serial_Printf("AT+MQTTUSERCFG=0,1,\"haiyun1\",\"61HUR9Nplm\",\"version=2018-10-31&res=products%%2F61HUR9Nplm%%2Fdevices%%2Fhaiyun1&et=2190525243&method=md5&sign=vZ%%2Fz2KmC%%2F58NUIvrO7ma2A%%3D%%3D\",0,0,\"\"\r\n");
+Serial_Printf("AT+MQTTUSERCFG=0,1,\"1\",\"2\",\"3\",0,0,\"\"\r\n");
 delay_ms(3000);
-Serial_Printf("AT+MQTTCONN=0,\"mqtts.heclouds.com\",1883,1\r\n");
+Serial_Printf("AT+MQTTCONN=0,\"mqtts..com\",1883,1\r\n");
 	delay_ms(3000);
-Serial_Printf("AT+MQTTSUB=0,\"$sys/61HUR9Nplm/haiyun1/thing/property/post/reply\",0\r\n");
+Serial_Printf("AT+MQTTSUB=0,\"$sys/2/1/thing/property/post/reply\",0\r\n");
 		delay_ms(1000);
 	
 	Serial3_Init(115200);
@@ -56,5 +35,5 @@ Serial_Printf("AT+MQTTSUB=0,\"$sys/61HUR9Nplm/haiyun1/thing/property/post/reply\
 	LoRa_Init();
 	
 	
-   lvgl_demo();                        /* ÔËĞĞFreeRTOSÀı³Ì */
+   lvgl_demo();                   
 }
